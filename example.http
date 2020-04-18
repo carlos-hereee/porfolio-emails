@@ -1,0 +1,9 @@
+### ROOT SERVER
+GET http://localhost:4000/
+
+### MAIL ENDPOINT
+GET http://localhost:4000/mail/
+
+
+### PROJECT ENDPOINTS 
+GET http://localhost:4000/projects/

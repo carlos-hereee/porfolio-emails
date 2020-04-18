@@ -1,0 +1,40 @@
+{
+	"name": "porfolio-emails",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"server": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ch04937/porfolio-emails.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ch04937/porfolio-emails/issues"
+	},
+	"homepage": "https://github.com/ch04937/porfolio-emails#readme",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"db": "^1.1.1",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"helmet": "^3.22.0",
+		"knex": "^0.20.15",
+		"minipass": "^3.1.1",
+		"nodemailer": "^6.4.1",
+		"pg": "^8.0.2",
+		"sendemail": "^3.4.0",
+		"sqlite3": "^4.1.1"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.2",
+		"nodemon": "^2.0.3"
+	}
+}
