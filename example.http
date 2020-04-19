@@ -7,3 +7,16 @@ GET http://localhost:4000/mail/
 
 ### PROJECT ENDPOINTS 
 GET http://localhost:4000/projects/
+
+
+### PROJECT ENDPOINTS POST // ADD A PROJECT TO DB 
+POST http://localhost:4000/projects/
+Content-Type: application/json
+
+{
+    "title":"Test Title",
+    "subtitle":"Test Title",
+    "description":"Test Title",
+    "website":"Test Title",
+    "github":"Test Title"
+}
