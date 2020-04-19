@@ -4,6 +4,7 @@ module.exports = {
 	getAll,
 	addProject,
 	findById,
+	removeProject,
 };
 
 function getAll() {
@@ -19,4 +20,7 @@ function addProject(project) {
 			const [id] = ids;
 			return findById(id);
 		});
+}
+function removeProject(name) {
+	return db("projects").where({ name = title }).del();
 }

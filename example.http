@@ -20,3 +20,10 @@ Content-Type: application/json
     "website":"Test Title",
     "github":"Test Title"
 }
+### PROJECT ENDPOINTS DEL // REMOVE A PROJECT FROM DB 
+DELETE http://localhost:4000/projects/1
+Content-Type: application/json
+
+{
+    "id":1
+}

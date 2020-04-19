@@ -14,10 +14,19 @@ route.post("/", async (req, res) => {
 	const body = req.body;
 	try {
 		const projects = await Projects.addProject(body);
-		console.log("projects", projects);
 		res.status(200).json({ projects });
 	} catch (e) {
 		console.log(e);
+	}
+});
+route.delete("/:id", async (req, res) => {
+	const { id } = req.body;
+	try {
+		const projects = await Projects.removeProject(id);
+		res.status(200).json({ projects });
+	} catch (e) {
+		console.log(e);
+		res.status(404).json({ message: "Whoopsie", error: e });
 	}
 });
 
