@@ -21,6 +21,6 @@ function addProject(project) {
 			return findById(id);
 		});
 }
-function removeProject(name) {
-	return db("projects").where({ name = title }).del();
+function removeProject(id) {
+	return db("projects").where({ id }).del();
 }

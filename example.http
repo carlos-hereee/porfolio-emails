@@ -14,16 +14,16 @@ POST http://localhost:4000/projects/
 Content-Type: application/json
 
 {
-    "title":"Test Title",
-    "subtitle":"Test Title",
-    "description":"Test Title",
-    "website":"Test Title",
-    "github":"Test Title"
+    "title":"DAD JOKES",
+    "subtitle":"Front end project using React",
+    "description":"You're a funny guy, but you keep losing your list of jokes and forgetting which ones had the best reactions! Well worry no more- Dad (or bad??) jokes app to the rescue.",
+    "website":"https://dadjokes-seven.now.sh/",
+    "github":"https://github.com/ch04937/dadjokes"
 }
 ### PROJECT ENDPOINTS DEL // REMOVE A PROJECT FROM DB 
-DELETE http://localhost:4000/projects/1
+DELETE http://localhost:4000/projects/3
 Content-Type: application/json
 
 {
-    "id":1
+    "id":3
 }
