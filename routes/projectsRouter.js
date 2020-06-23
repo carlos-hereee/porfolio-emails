@@ -11,16 +11,19 @@ route.get("/", async (req, res) => {
 	}
 });
 route.post("/", async (req, res) => {
-	const body = req.body;
+	const new_project = req.body.e;
+
 	try {
-		const projects = await Projects.addProject(body);
+		const projects = await Projects.addProject(new_project);
+		console.log("new_project", projects);
 		res.status(200).json({ projects });
 	} catch (e) {
 		console.log(e);
+		res.status(404).json({ message: "Not Found", e: e });
 	}
 });
 route.delete("/:id", async (req, res) => {
-	const { id } = req.body;
+	const id = req.params.id;
 	try {
 		const projects = await Projects.removeProject(id);
 		res.status(200).json({ projects });
