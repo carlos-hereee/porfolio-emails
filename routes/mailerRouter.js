@@ -1,7 +1,7 @@
 const route = require("express").Router();
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
-const { response } = require("express");
+
 const OAuth2 = google.auth.OAuth2;
 
 const oauth2Client = new OAuth2(
@@ -25,17 +25,18 @@ var transporter = nodemailer.createTransport({
 		accessToken: accessToken,
 	},
 });
-const mailOptions = {
-	from: process.env.USER,
-	to: process.env.USER,
-	subject: "Node.js Email with Secure OAuth",
-	generateTextFromHTML: true,
-	html: "<b>test</b>",
-};
 
-route.get("/", (req, res) => {
+route.post("/", (req, res) => {
+	const mail = req.body;
+	const mailOptions = {
+		from: mail.email,
+		to: process.env.USER,
+		subject: mail.subject,
+		generateTextFromHTML: true,
+		html: `This message comes from <b>carloshernandez.tech</b> contact me page, from <b>${mail.name}</b> says,<br/><br/>${mail.message}.<br/><br/> Can be reached at ${mail.email}`,
+	};
 	transporter.sendMail(mailOptions, (error, response) => {
-		error ? console.log(error) : console.log(response);
+		// error ? console.log(error) : console.log(response);
 		transporter.close();
 	});
 });
