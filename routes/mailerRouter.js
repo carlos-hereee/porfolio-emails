@@ -35,10 +35,17 @@ route.post("/", (req, res) => {
 		generateTextFromHTML: true,
 		html: `This message comes from <b>carloshernandez.tech</b> contact me page, from <b>${mail.name}</b> says,<br/><br/>${mail.message}.<br/><br/> Can be reached at ${mail.email}`,
 	};
-	transporter.sendMail(mailOptions, (error, response) => {
-		// error ? console.log(error) : console.log(response);
-		transporter.close();
-	});
+	try {
+		transporter.sendMail(mailOptions, (error, response) => {
+			// error ? console.log(error) : console.log(response);
+			transporter.close();
+			res.status(200).json({
+				message: "Thank you, will be in touch soon",
+			});
+		});
+	} catch (e) {
+		res.status(500).json({ message: "An Error has occured", e: e });
+	}
 });
 
 module.exports = route;
