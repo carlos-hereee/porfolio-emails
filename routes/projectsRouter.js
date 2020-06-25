@@ -6,7 +6,6 @@ route.get("/", async (req, res) => {
 		const projects = await Projects.getAll();
 		res.status(200).json({ projects });
 	} catch (e) {
-		console.log(e);
 		res.status(404).json({ message: "Whoopsie", e: e });
 	}
 });
@@ -15,10 +14,8 @@ route.post("/", async (req, res) => {
 
 	try {
 		const projects = await Projects.addProject(new_project);
-		console.log("new_project", projects);
 		res.status(200).json({ projects });
 	} catch (e) {
-		console.log(e);
 		res.status(404).json({ message: "Not Found", e: e });
 	}
 });
@@ -28,7 +25,6 @@ route.delete("/:id", async (req, res) => {
 		const projects = await Projects.removeProject(id);
 		res.status(200).json({ projects });
 	} catch (e) {
-		console.log(e);
 		res.status(404).json({ message: "Whoopsie", error: e });
 	}
 });

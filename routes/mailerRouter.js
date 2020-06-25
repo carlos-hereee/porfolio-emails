@@ -1,30 +1,43 @@
 const route = require("express").Router();
-
 const nodemailer = require("nodemailer");
-const bodyParser = require("body-parser");
+const { google } = require("googleapis");
+const { response } = require("express");
+const OAuth2 = google.auth.OAuth2;
 
-const transporter = nodemailer.createTransport({
+const oauth2Client = new OAuth2(
+	process.env.CLIENT_ID,
+	process.env.CLIENT_SECRET,
+	"https://developers.google.com/oauthplayground"
+);
+
+oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+
+const accessToken = oauth2Client.getAccessToken();
+
+var transporter = nodemailer.createTransport({
 	service: "gmail",
 	auth: {
-		user: "97hernandez.c@gmail.com",
-		pass: "Parodox12",
+		type: "OAuth2",
+		user: process.env.USER,
+		clientId: process.env.CLIENT_ID,
+		clientSecret: process.env.CLIENT_SECRET,
+		refreshToken: process.env.REFRESH_TOKEN,
+		accessToken: accessToken,
 	},
 });
-
-async function main() {
-	// send mail with defined transport object
-	let mailOptions = await transporter.sendMail({
-		from: "97hernandez.c@gmail.com", // sender address
-		to: "97hernandez.c@gmail.com", // list of receivers
-		subject: "Hello ✔", // Subject line
-		text: "Hello world?", // plain text body
-		html: "<b>Hello world?</b>", // html body
-	});
-}
+const mailOptions = {
+	from: process.env.USER,
+	to: process.env.USER,
+	subject: "Node.js Email with Secure OAuth",
+	generateTextFromHTML: true,
+	html: "<b>test</b>",
+};
 
 route.get("/", (req, res) => {
-	res.send("mailer");
-	console.log("main(", main());
+	transporter.sendMail(mailOptions, (error, response) => {
+		error ? console.log(error) : console.log(response);
+		transporter.close();
+	});
 });
 
 module.exports = route;
